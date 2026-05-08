@@ -40,7 +40,16 @@ def launch_and_manage():
 
     # 6. Website Update
     generate_showcase_html()
-    print(f"✔️  Portfolio website updated with new venture.")
+    import subprocess
+    base_dir = "/home/engine/automated-ventures"
+    try:
+        subprocess.run(["cp", f"{base_dir}/showcase.html", f"{base_dir}/index.html"], check=True)
+        subprocess.run(["git", "-C", base_dir, "add", "."], check=True)
+        subprocess.run(["git", "-C", base_dir, "commit", "-m", f"Auto-update: {selected['name']}"], check=True)
+        subprocess.run(["git", "-C", base_dir, "push", "origin", "main"], check=True)
+        print(f"✔️  Portfolio website updated and pushed to VentureMachine.")
+    except Exception as e:
+        print(f"⚠️  Failed to push website update: {e}")
 
     # 7. Monitoring & Growth (Simulation)
     print("\n📈 MOVING TO MONITORING PHASE...")

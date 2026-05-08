@@ -20,7 +20,16 @@ def populate():
 
     # Update the website
     showcase_path = generate_showcase_html()
-    print(f"\n✨ Portfolio website updated! View it at {showcase_path}")
+    import subprocess
+    base_dir = "/home/engine/automated-ventures"
+    try:
+        subprocess.run(["cp", f"{base_dir}/showcase.html", f"{base_dir}/index.html"], check=True)
+        subprocess.run(["git", "-C", base_dir, "add", "."], check=True)
+        subprocess.run(["git", "-C", base_dir, "commit", "-m", "Bulk update portfolio"], check=True)
+        subprocess.run(["git", "-C", base_dir, "push", "origin", "main"], check=True)
+        print(f"\n✨ Portfolio website updated and pushed! View it at https://CodyH24248.github.io/VentureMachine")
+    except Exception as e:
+        print(f"⚠️  Failed to push updates: {e}")
 
 if __name__ == "__main__":
     populate()

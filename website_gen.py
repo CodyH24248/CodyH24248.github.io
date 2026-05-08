@@ -38,6 +38,20 @@ def generate_showcase_html():
                             "full_content": content
                         })
 
+    # SVG Logo Component
+    logo_svg = """
+    <svg width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="inline-block mr-3">
+        <path d="M50 5L90 27.5V72.5L50 95L10 72.5V27.5L50 5Z" stroke="url(#logo_grad)" stroke-width="8" stroke-linejoin="round"/>
+        <path d="M30 40L50 70L70 40" stroke="#f8fafc" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+        <defs>
+            <linearGradient id="logo_grad" x1="10" y1="5" x2="90" y2="95" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#60a5fa"/>
+                <stop offset="1" stop-color="#c084fc"/>
+            </linearGradient>
+        </defs>
+    </svg>
+    """
+
     # 1. Generate Individual Business Pages
     for v in ventures_data:
         detail_html = f"""
@@ -55,6 +69,12 @@ def generate_showcase_html():
     </style>
 </head>
 <body class="min-h-screen">
+    <nav class="p-6 border-b border-white/5">
+        <div class="max-w-7xl mx-auto flex items-center">
+            {logo_svg}
+            <span class="text-xl font-bold tracking-tighter uppercase">VentureMachine</span>
+        </div>
+    </nav>
     <div class="max-w-4xl mx-auto px-6 py-20">
         <a href="index.html" class="text-blue-400 hover:text-blue-300 mb-12 inline-block font-bold">← Back to Portfolio</a>
         
@@ -127,6 +147,12 @@ def generate_showcase_html():
     </style>
 </head>
 <body class="bg-pattern min-h-screen">
+    <nav class="p-8">
+        <div class="max-w-7xl mx-auto flex items-center">
+            {logo_svg}
+            <span class="text-2xl font-black tracking-tighter uppercase gradient-text">VentureMachine</span>
+        </div>
+    </nav>
     <div class="geometric-shape bg-blue-600 w-96 h-96 top-[-100px] left-[-100px] rounded-full"></div>
     <div class="geometric-shape bg-purple-600 w-[500px] h-[500px] bottom-[-200px] right-[-100px] rounded-full"></div>
 
